@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooted Capital | Private Lending Intake</title>
+    <style>
+        :root { --gold: #c5a059; --dark: #050505; --soft-white: #e0e0e0; }
+        body { background: var(--dark); color: var(--soft-white); font-family: 'Georgia', serif; margin: 0; padding: 40px; }
+        .form-container { max-width: 500px; margin: 0 auto; background: #0a0a0a; padding: 40px; border: 1px solid #222; }
+        h1 { letter-spacing: 0.2em; text-transform: uppercase; font-weight: 100; text-align: center; color: #fff; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: var(--gold); }
+        input, select { width: 100%; background: #111; border: 1px solid #333; padding: 12px; color: #fff; box-sizing: border-box; }
+        input:focus { border-color: var(--gold); outline: none; }
+        .btn-submit { width: 100%; padding: 15px; background: transparent; border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; }
+        .btn-submit:hover { background: var(--gold); color: var(--dark); }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.6rem; color: #333; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Capital Intake</h1>
+        <form id="loanForm">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="clientName" required>
+            </div>
+            <div class="input-group">
+                <label>Requested Principal ($)</label>
+                <input type="number" name="amount" placeholder="e.g. 200000" required>
+            </div>
+            <div class="input-group">
+                <label>Loan Type</label>
+                <select name="loanType">
+                    <option value="transactional">Transactional Funding</option>
+                    <option value="bridge">Short-Term Bridge</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Property Address (Collateral)</label>
+                <input type="text" name="address" required>
+            </div>
+            <button type="submit" class="btn-submit">Submit Application</button>
+        </form>
+    </div>
+    <div class="footer">Proprietary Lending Engine | Rooted Capital Co.</div>
+
+    <script>
+        document.getElementById('loanForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            alert('Cloud Architect Note: This will now POST to your Azure Function at /api/LoanIntake');
+            console.log('Intake Data:', data);
+        };
+    </script>
+</body>
+</html>
