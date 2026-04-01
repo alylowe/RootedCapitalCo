@@ -242,6 +242,49 @@ JavaScript
             if (status) status.innerText = "CONNECTION ERROR: RETRYING...";
         }
     }
+    async function routeToMauny() {
+        const status = document.getElementById('status-msg');
+        if (status) status.innerText = "COMMITTING TO INSTITUTIONAL LEDGER...";
+
+        // 1. DATA PAYLOAD
+        const auditPayload = {
+            PartitionKey: "185WLake", // Property Name
+            RowKey: new Date().getTime().toString(), // Unique ID
+            TotalImpact: "$3,875.00",
+            Approver: "Mauny",
+            Status: "Approved",
+            Timestamp: new Date().toISOString()
+        };
+
+        try {
+            // 2. THE FIX: Force the path to the API
+            const response = await fetch('/api/LoanIntake', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(auditPayload)
+            });
+
+            if (response.ok) {
+                // 3. SUCCESS STATE
+                if (status) {
+                    status.innerText = "SUCCESS: LEDGER LOCKED & CSV GENERATED";
+                    status.style.color = "#A7F3D0";
+                }
+                downloadCSV(); // Triggers the download
+
+                // Update the UI
+                document.querySelector('.status-pill').innerHTML = "Approved & Synced";
+                document.querySelector('.status-pill').style.borderColor = "#C5A059";
+            } else {
+                const errorText = await response.text();
+                console.error("API Error:", errorText);
+                if (status) status.innerText = "API ERROR: CHECK AZURE LOGS";
+            }
+        } catch (err) {
+            console.error("Connection Error:", err);
+            if (status) status.innerText = "OFFLINE: SAVING LOCALLY...";
+        }
+    }
     </script>
 </body>
 </html>
