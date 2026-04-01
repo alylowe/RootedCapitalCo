@@ -11,6 +11,7 @@
         .glass-panel { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); }
         input, textarea, select { background: transparent !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; border-top: 0; border-left: 0; border-right: 0; border-radius: 0 !important; padding: 1rem 0 !important; color: white !important; outline: none !important; }
         input:focus { border-color: var(--mint) !important; }
+        .product-card { border-left: 1px solid var(--gold); padding-left: 20px; margin-bottom: 40px; }
     </style>
 </head>
 <body class="antialiased">
@@ -28,9 +29,26 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
             
             <div class="lg:col-span-5">
-                <span class="text-[#C5A059] font-bold tracking-[0.5em] uppercase text-[9px] mb-6 block">Capital Deployment</span>
-                <h1 class="text-6xl font-extralight tracking-tighter leading-none mb-12">Inquiry <br/><span class="font-semibold italic">Portal.</span></h1>
+                <span class="text-[#C5A059] font-bold tracking-[0.5em] uppercase text-[9px] mb-6 block">Nationwide Liquidity</span>
+                <h1 class="text-6xl font-extralight tracking-tighter leading-none mb-16">Capital <br/><span class="font-semibold italic">Solutions.</span></h1>
                 
+                <div class="space-y-12">
+                    <div class="product-card">
+                        <p class="text-[10px] font-bold text-[#A7F3D0] uppercase tracking-widest mb-2">Short-Term: Fix & Flip</p>
+                        <p class="text-sm text-gray-400 font-light">Up to 90% LTC / 70% ARLTV. Loans from $50K - $3MM. 12-month standard terms for non-owner occupied SFR and 2-4 unit properties.</p>
+                    </div>
+
+                    <div class="product-card">
+                        <p class="text-[10px] font-bold text-[#A7F3D0] uppercase tracking-widest mb-2">Ground-Up Construction</p>
+                        <p class="text-sm text-gray-400 font-light">Max 85% of total project costs. Eligible for non-owner occupied 1-4 unit residential, townhomes, and condos.</p>
+                    </div>
+
+                    <div class="product-card">
+                        <p class="text-[10px] font-bold text-[#A7F3D0] uppercase tracking-widest mb-2">Long-Term: Rental Portfolio</p>
+                        <p class="text-sm text-gray-400 font-light">Up to 80% LTV on purchase and refi. 1.05x minimum DSCR requirement. Minimum unit value of $72K.</p>
+                    </div>
+                </div>
+
                 <div class="glass-panel p-10 rounded-[40px] mt-20">
                     <p class="text-[10px] font-bold tracking-widest text-[#A7F3D0] uppercase mb-8">Loan Audit Simulator</p>
                     <div class="space-y-8">
@@ -52,7 +70,7 @@
 
             <div class="lg:col-span-7">
                 <div class="glass-panel p-12 rounded-[40px]">
-                    <p class="text-gray-400 font-light mb-12 leading-relaxed italic">Submit asset details for institutional risk audit. Our team typically provides a term sheet within 48 hours of verification.</p>
+                    <p class="text-gray-400 font-light mb-12 leading-relaxed italic">Submit asset details for institutional risk audit. Our team provides nationwide coverage in 45 states (Excl: ND, OR, SD, UT, VT).</p>
                     
                     <form id="loanForm" class="space-y-10">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -62,10 +80,10 @@
                         
                         <select name="interest" class="w-full">
                             <option value="" disabled selected>Primary Area of Interest</option>
-                            <option value="Private Credit">Private Credit / Lending</option>
-                            <option value="Equity Partners">Equity Partnership Opportunities</option>
-                            <option value="Asset Acquisitions">Strategic Asset Acquisitions</option>
-                            <option value="Management">Portfolio Management Audit</option>
+                            <option value="FixAndFlip">Fix & Flip (Short-Term)</option>
+                            <option value="GroundUp">Ground-Up Construction</option>
+                            <option value="Rental">Single Property / Portfolio Rental</option>
+                            <option value="Bridge">Stabilized Bridge</option>
                         </select>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -87,7 +105,6 @@
     </section>
 
     <script>
-        // Interest Calculator Logic
         const amountEl = document.getElementById('loanAmount');
         const rateEl = document.getElementById('loanRate');
         const resultEl = document.getElementById('monthlyResult');
