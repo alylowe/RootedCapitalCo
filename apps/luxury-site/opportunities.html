@@ -1,51 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet">
-    <style>body { background: #050505; color: white; font-family: 'Inter', sans-serif; }</style>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Intake | Rooted Capital Co.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #C5A059; --mint: #A7F3D0; }
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); }
+        input, textarea, select { background: transparent !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; border-top: 0; border-left: 0; border-right: 0; border-radius: 0 !important; padding: 1rem 0 !important; color: white !important; outline: none !important; }
+        input:focus { border-color: var(--mint) !important; }
+    </style>
 </head>
 <body class="antialiased">
-    <nav class="flex justify-between p-10 absolute w-full z-50">
-        <div class="font-bold uppercase text-xl tracking-tighter">Rooted Capital <span class="text-gray-500 font-light">Co.</span></div>
-        <div class="flex gap-8 text-[10px] font-bold tracking-widest uppercase">
-            <a href="index.html" class="hover:text-[#A7F3D0]">Back to Home</a>
+
+    <nav class="flex justify-between items-center px-10 py-10 absolute w-full z-50">
+        <div class="text-xl font-semibold tracking-tighter uppercase">Rooted Capital <span class="text-gray-500 font-light italic">Co.</span></div>
+        <div class="flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">
+            <a href="index.html" class="hover:text-white transition">Home</a>
+            <a href="about.html" class="hover:text-white transition">Partners</a>
+            <a href="services.html" class="hover:text-white transition">Asset Classes</a>
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center pt-32 pb-20 px-6">
-        <div class="max-w-3xl w-full p-12 border border-white/10 bg-white/5 backdrop-blur-2xl rounded-3xl shadow-2xl">
-            <h2 class="text-4xl font-light mb-2 tracking-tight">Loan Application</h2>
-            <p class="text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.4em] mb-12">Private Credit Intake Portal</p>
+    <section class="pt-48 pb-20 px-10 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
             
-            <form id="loanForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Principal Name</label>
-                    <input type="text" name="name" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
-                </div>
-                <div>
-                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Entity Name</label>
-                    <input type="text" name="entity" class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
-                </div>
-                <div>
-                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Requested Amount</label>
-                    <input type="text" name="amount" placeholder="$500,000+" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition text-[#A7F3D0]">
-                </div>
-                <div>
-                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Asset Location (City/State)</label>
-                    <input type="text" name="location" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Executive Summary / Use of Funds</label>
-                    <textarea name="summary" rows="3" class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition resize-none"></textarea>
-                </div>
+            <div class="lg:col-span-5">
+                <span class="text-[#C5A059] font-bold tracking-[0.5em] uppercase text-[9px] mb-6 block">Capital Deployment</span>
+                <h1 class="text-6xl font-extralight tracking-tighter leading-none mb-12">Inquiry <br/><span class="font-semibold italic">Portal.</span></h1>
                 
-                <button type="submit" class="md:col-span-2 w-full bg-[#A7F3D0] text-[#064E3B] py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs mt-10 hover:bg-white transition-all duration-500 shadow-xl shadow-emerald-500/10">
-                    Submit Application for Audit
-                </button>
-            </form>
-            <div id="responseMessage" class="hidden mt-8 text-center text-sm text-[#A7F3D0] font-light italic"></div>
+                <div class="glass-panel p-10 rounded-[40px] mt-20">
+                    <p class="text-[10px] font-bold tracking-widest text-[#A7F3D0] uppercase mb-8">Loan Audit Simulator</p>
+                    <div class="space-y-8">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-2">Requested Allocation</label>
+                            <input type="number" id="loanAmount" value="500000" class="text-3xl w-full">
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-2">Annualized Rate (%)</label>
+                            <input type="number" id="loanRate" value="12" class="text-3xl w-full">
+                        </div>
+                        <div class="pt-8 border-t border-white/10">
+                            <p class="text-[9px] uppercase tracking-widest text-gray-500">Projected Monthly Interest</p>
+                            <p id="monthlyResult" class="text-5xl font-light text-[#A7F3D0] mt-2 tracking-tighter">$5,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7">
+                <div class="glass-panel p-12 rounded-[40px]">
+                    <p class="text-gray-400 font-light mb-12 leading-relaxed italic">Submit asset details for institutional risk audit. Our team typically provides a term sheet within 48 hours of verification.</p>
+                    
+                    <form id="loanForm" class="space-y-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <input type="text" name="name" placeholder="Full Name / Principal" required>
+                            <input type="email" name="email" placeholder="Institutional Email" required>
+                        </div>
+                        
+                        <select name="interest" class="w-full">
+                            <option value="" disabled selected>Primary Area of Interest</option>
+                            <option value="Private Credit">Private Credit / Lending</option>
+                            <option value="Equity Partners">Equity Partnership Opportunities</option>
+                            <option value="Asset Acquisitions">Strategic Asset Acquisitions</option>
+                            <option value="Management">Portfolio Management Audit</option>
+                        </select>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <input type="text" name="asset_location" placeholder="Asset Location (City/State)">
+                            <input type="text" name="capital_needed" placeholder="Capital Required ($)">
+                        </div>
+
+                        <textarea name="comments" placeholder="Executive Summary / Use of Funds" rows="3"></textarea>
+
+                        <button type="submit" class="w-full bg-[#A7F3D0] text-[#064E3B] py-6 rounded-full font-bold uppercase tracking-[0.3em] text-[10px] hover:bg-white transition-all shadow-xl shadow-emerald-500/10">
+                            Submit for Institutional Audit
+                        </button>
+                    </form>
+                    <div id="formStatus" class="hidden mt-8 text-center text-xs font-light tracking-widest text-[#A7F3D0] uppercase italic animate-pulse">Audit Initiated... Secure Ledger Entry Confirmed.</div>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <script>
+        // Interest Calculator Logic
+        const amountEl = document.getElementById('loanAmount');
+        const rateEl = document.getElementById('loanRate');
+        const resultEl = document.getElementById('monthlyResult');
+
+        const updateCalc = () => {
+            const amount = parseFloat(amountEl.value) || 0;
+            const rate = parseFloat(rateEl.value) || 0;
+            const monthly = (amount * (rate / 100)) / 12;
+            resultEl.innerText = '$' + monthly.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+        };
+
+        amountEl.addEventListener('input', updateCalc);
+        rateEl.addEventListener('input', updateCalc);
+    </script>
 </body>
 </html>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooted Capital | Institutional Private Equity</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #C5A059; --mint: #A7F3D0; }
-        body { background: #050505; color: white; font-family: 'Inter', sans-serif; }
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-bg { 
             background: linear-gradient(to right, #050505 30%, rgba(5,5,5,0)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
@@ -22,6 +22,7 @@
             <a href="about.html" class="hover:text-white transition">About</a>
             <a href="services.html" class="hover:text-white transition">Services</a>
             <a href="opportunities.html" class="text-[#A7F3D0]">Lending</a>
+            <a href="time-report.html" class="hover:text-white transition">Crew Portal</a>
         </div>
     </nav>
 
@@ -31,9 +32,28 @@
             <h1 class="text-6xl md:text-[100px] font-extralight leading-[0.95] mb-10 tracking-tighter">
                 Deploying <br/><span class="font-semibold text-white">Strategic</span> Capital.
             </h1>
-            <a href="opportunities.html" class="bg-[#A7F3D0] text-[#064E3B] px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all inline-block">
-                Inquire for Funding
-            </a>
+            <div class="flex gap-4">
+                <a href="opportunities.html" class="bg-[#A7F3D0] text-[#064E3B] px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all">
+                    Inquire for Funding
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-32 px-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 border-t border-gray-100">
+            <div class="py-20 pr-10 border-r border-gray-100 group">
+                <p class="text-[#C5A059] text-[9px] font-bold uppercase mb-6 tracking-widest">01. Acquisitions</p>
+                <p class="text-3xl font-light text-black group-hover:pl-4 transition-all duration-500">Distressed asset repositioning.</p>
+            </div>
+            <div class="py-20 px-10 border-r border-gray-100 bg-gray-50/50 group">
+                <p class="text-[#C5A059] text-[9px] font-bold uppercase mb-6 tracking-widest">02. Private Credit</p>
+                <p class="text-3xl font-light text-black group-hover:pl-4 transition-all duration-500">Bespoke bridge capital.</p>
+            </div>
+            <div class="py-20 pl-10 group">
+                <p class="text-[#C5A059] text-[9px] font-bold uppercase mb-6 tracking-widest">03. Management</p>
+                <p class="text-3xl font-light text-black group-hover:pl-4 transition-all duration-500">Institutional oversight.</p>
+            </div>
         </div>
     </section>
 </body>

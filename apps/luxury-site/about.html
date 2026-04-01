@@ -1,35 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners | Rooted Capital Co.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet">
-    <style>body { background: #050505; color: white; font-family: 'Inter', sans-serif; }</style>
+    <style>
+        :root { --gold: #C5A059; --emerald: #064E3B; }
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; }
+        .headshot-frame { border-left: 1px solid var(--gold); padding-left: 2rem; margin-bottom: 2.5rem; overflow: hidden; }
+        .bio-text { font-size: 0.95rem; line-height: 1.8; color: #9ca3af; font-weight: 300; }
+    </style>
 </head>
 <body class="antialiased">
+
     <nav class="flex justify-between p-10 absolute w-full z-50">
-        <div class="font-bold uppercase text-xl">Rooted Capital <span class="font-light text-gray-500">Co.</span></div>
-        <div class="flex gap-10 text-[10px] font-bold tracking-widest uppercase">
-            <a href="index.html">Home</a><a href="services.html">Services</a><a href="opportunities.html" class="text-[#A7F3D0]">Lending</a>
+        <div class="font-bold tracking-tighter uppercase text-xl">Rooted Capital <span class="font-light text-gray-500 italic">Co.</span></div>
+        <div class="flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase">
+            <a href="index.html" class="hover:text-[#A7F3D0]">Home</a>
+            <a href="services.html" class="hover:text-[#A7F3D0]">Services</a>
+            <a href="opportunities.html" class="text-[#A7F3D0]">Lending</a>
         </div>
     </nav>
-    <section class="py-40 px-10 max-w-6xl mx-auto">
-        <h2 class="text-[#C5A059] uppercase tracking-[0.5em] text-[9px] mb-20 text-center font-bold">Institutional Leadership</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+
+    <section class="py-48 px-10 max-w-7xl mx-auto">
+        <div class="mb-32 text-center">
+            <span class="text-[#C5A059] font-semibold tracking-[0.5em] uppercase text-[9px] mb-4 block">Institutional Leadership</span>
+            <h1 class="text-6xl md:text-8xl font-extralight tracking-tighter leading-none italic">The <span class="font-semibold">Partners.</span></h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+            
             <div class="group">
-                <div class="border-l border-[#C5A059] pl-6 mb-8">
-                    <img src="/images/mauny-headshot.jpg" class="w-full grayscale group-hover:grayscale-0 transition duration-700">
+                <div class="headshot-frame">
+                    <img src="/images/mauny-headshot.jpg" class="w-full grayscale filter group-hover:grayscale-0 transition duration-1000 scale-105 group-hover:scale-100" alt="Mauny Tabar">
                 </div>
-                <h3 class="text-2xl font-light uppercase tracking-widest">Mauny Tabar</h3>
-                <p class="text-gray-500 text-sm mt-4 leading-relaxed">Ex-Big 4 Management Consultant specializing in distressed asset acquisition.</p>
+                <h2 class="text-4xl font-light tracking-widest uppercase mb-8">Mauny Tabar</h2>
+                <div class="bio-text space-y-6">
+                    <p>
+                        A veteran of the **Big 4 Management Consulting** sector, Mauny Tabar brings a rigorous, data-centric approach to the deployment of private credit. His career has been defined by the successful navigation of complex distressed asset acquisitions and the engineering of high-alpha exit strategies.
+                    </p>
+                    <p>
+                        As the Managing Partner of Rooted Capital Co., Mauny oversees the firm's overarching investment philosophy. He specializes in identifying structural inefficiencies within the metropolitan Atlanta market, providing institutional partners with bespoke exposure to high-yield real estate opportunities.
+                    </p>
+                    <p class="text-[10px] tracking-widest text-[#C5A059] font-bold uppercase">Focus: Asset Acquisition & Private Credit Strategy</p>
+                </div>
             </div>
+
             <div class="group">
-                <div class="border-l border-[#C5A059] pl-6 mb-8">
-                    <img src="/images/neema-headshot.jpg" class="w-full grayscale group-hover:grayscale-0 transition duration-700">
+                <div class="headshot-frame">
+                    <img src="/images/neema-headshot.jpg" class="w-full grayscale filter group-hover:grayscale-0 transition duration-1000 scale-105 group-hover:scale-100" alt="Neema Tabar">
                 </div>
-                <h3 class="text-2xl font-light uppercase tracking-widest">Neema Tabar</h3>
-                <p class="text-gray-500 text-sm mt-4 leading-relaxed">Operations Lead focusing on institutional-grade project oversight.</p>
+                <h2 class="text-4xl font-light tracking-widest uppercase mb-8">Neema Tabar</h2>
+                <div class="bio-text space-y-6">
+                    <p>
+                        With a foundational career at a **Big 4 firm**, Neema Tabar translates high-level consulting frameworks into operational excellence. His expertise lies in the "Last Mile" of project lifecycle management—ensuring that the firm's acquisitions are executed with surgical precision.
+                    </p>
+                    <p>
+                        Neema directs the firm's field operations and tech-enabled oversight systems. By implementing institutional-grade reporting standards for on-site crews, he ensures that every dollar of deployed capital is accounted for, maximizing investor ROI through operational efficiency and transparency.
+                    </p>
+                    <p class="text-[10px] tracking-widest text-[#C5A059] font-bold uppercase">Focus: Operations & Lifecycle Management</p>
+                </div>
             </div>
+
         </div>
     </section>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+<body class="bg-[#050505] p-6 pt-20 flex justify-center font-sans">
+    <div class="max-w-xl w-full bg-white/5 p-12 rounded-[40px] border border-white/10">
+        <h1 class="text-3xl font-light mb-10 tracking-tighter">Shift <span class="font-semibold italic">Log.</span></h1>
+        <form id="timeForm" class="space-y-8">
+            <select name="foreman" class="w-full bg-white/5 p-4 rounded-2xl border border-white/10 text-white uppercase text-[10px] tracking-widest">
+                <option value="Domingo">Domingo (Foreman)</option>
+                <option value="Franco">Franco</option>
+                <option value="Kevin">Kevin</option>
+                <option value="Carlos">Carlos</option>
+                <option value="Gabriel">Gabriel</option>
+            </select>
+            <select name="site" class="w-full bg-white/5 p-4 rounded-2xl border border-white/10 text-white uppercase text-[10px] tracking-widest">
+                <option value="185-W-Lake">185 W Lake</option>
+                <option value="3048-Duke">3048 Duke</option>
+                <option value="2081-Dodson">2081 Dodson</option>
+                <option value="2139-W-Cedar">2139 W Cedar</option>
+            </select>
+            <input type="number" name="hours" placeholder="Hours Logged" step="0.5" class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-[#A7F3D0] text-3xl">
+            <button type="submit" class="w-full bg-[#C5A059] text-black py-5 rounded-full font-bold uppercase tracking-widest text-[10px]">Commit to Ledger</button>
+        </form>
+    </div>
+</body>
