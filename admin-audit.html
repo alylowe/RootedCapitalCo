@@ -174,6 +174,74 @@
         }
     }
 }
+	To append the Filing logic to your existing code, you just need to update the body of your fetch request inside the routeToMauny function. This tells the Azure backend exactly what data to "file" into your database tables.
+
+Here is the finalized, high-end version of the script to paste into your admin-audit.html.
+
+The "Institutional Ledger" Script
+JavaScript
+<script>
+    // 1. THE "PRINT" TOOL (Generates the CSV for Mauny)
+    function downloadCSV() {
+        const csvRows = [
+            ["Property", "Personnel", "Hours", "Rate", "Total"],
+            ["185 W Lake", "Domingo", "40", "50", "2000"],
+            ["185 W Lake", "Franco", "38.5", "25", "962.50"],
+            ["185 W Lake", "Kevin", "36", "25", "900"]
+        ];
+
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + csvRows.map(e => e.join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Rooted_Capital_Payroll_185WLake.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // 2. THE "FILE" FUNCTION (Commits to Azure Tables)
+    async function routeToMauny() {
+        const status = document.getElementById('status-msg');
+        if (status) status.innerText = "COMMITTING TO INSTITUTIONAL LEDGER...";
+
+        // This is the data being "Filed" in your Azure Storage
+        const ledgerData = {
+            action: 'approve_weekly_burn',
+            project: '185 W Lake',
+            total_impact: 3875.00,
+            approver: 'Mauny',
+            timestamp: new Date().toISOString(),
+            audit_id: "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase()
+        };
+
+        try {
+            const response = await fetch('/api/LoanIntake', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(ledgerData) // <--- APPENDED DATA HERE
+            });
+
+            if (response.ok) {
+                if (status) {
+                    status.innerText = "SUCCESS: LEDGER LOCKED & CSV DOWNLOADED";
+                    status.style.color = "#A7F3D0";
+                }
+
+                // Trigger the Print
+                downloadCSV();
+
+                // Lock the UI
+                document.querySelector('.status-pill').innerHTML = "Approved & Synced";
+                document.querySelector('.status-pill').style.color = "#C5A059";
+                document.querySelector('.status-pill').style.borderColor = "#C5A059";
+            }
+        } catch (err) {
+            if (status) status.innerText = "CONNECTION ERROR: RETRYING...";
+        }
+    }
     </script>
 </body>
 </html>
