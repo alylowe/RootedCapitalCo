@@ -2,35 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Rooted Capital Co.</title>
     <style>
-        :root { --gold: #c5a059; --dark: #0a0a0a; }
-        body { background: var(--dark); color: #fff; font-family: sans-serif; margin: 0; }
-        nav { display: flex; justify-content: space-between; padding: 20px 50px; background: #fff; }
-        nav a { margin-left: 20px; text-decoration: none; color: #333; text-transform: uppercase; }
-        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
-        h1, h2 { color: var(--gold); font-family: serif; }
-        .founder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
+        :root { --gold: #c5a059; --dark: #0a0a0a; --gray: #1a1a1a; }
+        body { background: var(--dark); color: white; font-family: 'Times New Roman', serif; margin: 0; line-height: 1.6; }
+        nav { padding: 20px; border-bottom: 1px solid #333; text-align: center; }
+        nav a { color: var(--gold); margin: 0 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        h1, h2 { text-transform: uppercase; letter-spacing: 6px; color: var(--gold); text-align: center; }
+        .history { font-size: 20px; text-align: center; font-style: italic; color: #bbb; margin-bottom: 60px; }
+        .leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px; }
+        .bio h3 { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px; }
+        .value-props { background: var(--gray); padding: 40px; border-radius: 4px; margin-top: 80px; border: 1px solid #333; }
+        .value-props h2 { margin-top: 0; }
+        .highlight { color: var(--gold); font-weight: bold; }
     </style>
 </head>
 <body>
     <nav>
-        <div style="color:var(--gold); font-weight:bold;">ROOTED CAPITAL</div>
-        <div><a href="index.html">Home</a><a href="about.html" style="color:var(--gold)">About</a><a href="services.html">Services</a><a href="opportunities.html">Opportunities</a><a href="contact.html">Contact Us</a></div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="opportunities.html">Opportunities</a>
     </nav>
+
     <div class="container">
-        <h1>About</h1>
-        <p>Rooted Capital Co. is a real estate investment firm that acquired its first property in 2003 and has acquired several hundred properties since its inception.</p>
-        <h2>Leadership</h2>
-        <div class="founder-grid">
-            <div>
-                <h3>Mauny Tabar</h3>
-                <p>Prior to founding Rooted Capital Co, Mauny had a career in Management Consulting at a Big 4 firm. He oversees acquisition of distressed properties.</p>
+        <h1>Our Legacy</h1>
+        <p class="history">
+            Rooted in resilience, defined by results. Since acquiring our first property in 2003, Rooted Capital Co. has navigated through every major market cycle, acquiring several hundred assets across the residential spectrum.
+        </p>
+
+        <h2>Executive Leadership</h2>
+        <div class="leadership-grid">
+            <div class="bio">
+                <h3>Mauny Tabar <br><small>Principal & Co-Founder</small></h3>
+                <p>
+                    Leveraging a foundation in <span class="highlight">Big 4 Management Consulting</span>, Mauny brings an analytical rigor to real estate rarely seen in the private sector. He specializes in the strategic acquisition of distressed assets, identifying high-yield opportunities that provide long-term stability for Rooted Capital and its institutional partners.
+                </p>
             </div>
-            <div>
-                <h3>Neema Tabar</h3>
-                <p>Prior to founding Rooted Capital Co, Neema had a career in Management Consulting at a Big 4 firm. He oversees business operations.</p>
+            <div class="bio">
+                <h3>Neema Tabar <br><small>Principal & Co-Founder</small></h3>
+                <p>
+                    Also a veteran of <span class="highlight">Big 4 Management Consulting</span>, Neema oversees the operational architecture of the firm. From high-level business logistics to the precision of our property management division, Neema ensures that every asset in the Rooted Capital portfolio operates with maximum efficiency and transparency.
+                </p>
             </div>
+        </div>
+
+        <div class="value-props">
+            <h2>The Rooted Standard</h2>
+            <p>
+                Why choose Rooted Capital? Because we combine <span class="highlight">cutting-edge technology</span> with deep-market relationships. Our network of elite contractors, attorneys, and financial experts has been cultivated over two decades. 
+            </p>
+            <p>
+                Above all, we operate on three non-negotiable pillars: <span class="highlight">Integrity, Accountability, and Compassion.</span>
+            </p>
         </div>
     </div>
 </body>
