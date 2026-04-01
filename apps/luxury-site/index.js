@@ -88,3 +88,59 @@ if (weeklyForm) {
         }, 1500);
     });
 }
+// --- THE PRINCIPAL'S SECRET HANDSHAKE ---
+let logoClicks = 0;
+// This targets the specific "Rooted Capital Co." text in your nav
+const navLogo = document.querySelector('.text-xl.font-semibold');
+
+if (navLogo) {
+    navLogo.style.cursor = "default"; // Keeps it looking like plain text, not a link
+    navLogo.addEventListener('click', () => {
+        logoClicks++;
+
+        // Log for your internal audit
+        console.log(`[AUTH] Handshake sequence: ${logoClicks}/3`);
+
+        if (logoClicks === 3) {
+            console.log("[AUTH] Principal Identity Challenged. Redirecting to Audit Vault...");
+            window.location.href = "admin-audit.html";
+        }
+
+        // Reset the counter after 2 seconds of inactivity
+        // This prevents random people from accidentally triggering it
+        setTimeout(() => {
+            logoClicks = 0;
+        }, 2000);
+    });
+}
+// --- FIELD OPERATIONS: WEEKLY LEDGER LOGIC ---
+const weeklyForm = document.getElementById('weeklyAuditForm');
+
+if (weeklyForm) {
+    weeklyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const submitBtn = e.target.querySelector('button');
+        const project = document.getElementById('projectSite').value;
+        const totalHours = document.getElementById('grandTotalDisplay').innerText;
+
+        // Visual Feedback for the Crew
+        submitBtn.innerHTML = "DISPATCHING TO PRINCIPAL...";
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.7";
+
+        // Institutional Log
+        console.log(`[FIELD OPS] Audit initiated for ${project}. Total Burn: ${totalHours}`);
+
+        // Simulation of the Secure Data Transfer
+        setTimeout(() => {
+            submitBtn.innerHTML = "SENT FOR APPROVAL";
+            submitBtn.style.background = "#C5A059"; // Switch to Gold
+            submitBtn.style.color = "#000";
+            submitBtn.style.opacity = "1";
+
+            // This is the "User Experience" touch for the foreman
+            alert(`Weekly Ledger for ${project} has been secured and routed to Mauny's Executive Dashboard.`);
+        }, 2500);
+    });
+}
