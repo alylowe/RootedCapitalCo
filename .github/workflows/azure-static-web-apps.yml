@@ -1,0 +1,26 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: "Ca8860ae9b3579c079d3ae5987d0af0c8610ec67ea7402bdc42e3cef629faf9801-0056f402-c96d-4de2-893b-9c96aa46104c00f12030600ac70f"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "apps/luxury-site"
+          api_location: ""
+          output_location: ""
+          skip_app_build: true
