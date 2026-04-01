@@ -1,11 +1,51 @@
-<section class="bg-[#050505] h-screen flex items-center justify-center px-10">
-    <div class="max-w-xl w-full p-12 border border-white/10 bg-white/5 backdrop-blur-xl rounded-2xl">
-        <h2 class="text-3xl font-light mb-2">Capital Inquiry</h2>
-        <p class="text-gray-500 text-xs uppercase tracking-widest mb-10">Institutional Lending Audit</p>
-        <form class="space-y-8">
-            <input type="text" placeholder="Desired Capital Allocation" class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-[#A7F3D0] transition">
-            <input type="text" placeholder="Asset Class / Location" class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-[#A7F3D0] transition">
-            <button class="w-full bg-[#A7F3D0] text-[#064E3B] py-5 rounded-full font-bold uppercase tracking-widest text-[10px]">Submit for Review</button>
-        </form>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet">
+    <style>body { background: #050505; color: white; font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="antialiased">
+    <nav class="flex justify-between p-10 absolute w-full z-50">
+        <div class="font-bold uppercase text-xl tracking-tighter">Rooted Capital <span class="text-gray-500 font-light">Co.</span></div>
+        <div class="flex gap-8 text-[10px] font-bold tracking-widest uppercase">
+            <a href="index.html" class="hover:text-[#A7F3D0]">Back to Home</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center pt-32 pb-20 px-6">
+        <div class="max-w-3xl w-full p-12 border border-white/10 bg-white/5 backdrop-blur-2xl rounded-3xl shadow-2xl">
+            <h2 class="text-4xl font-light mb-2 tracking-tight">Loan Application</h2>
+            <p class="text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.4em] mb-12">Private Credit Intake Portal</p>
+            
+            <form id="loanForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Principal Name</label>
+                    <input type="text" name="name" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
+                </div>
+                <div>
+                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Entity Name</label>
+                    <input type="text" name="entity" class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
+                </div>
+                <div>
+                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Requested Amount</label>
+                    <input type="text" name="amount" placeholder="$500,000+" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition text-[#A7F3D0]">
+                </div>
+                <div>
+                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Asset Location (City/State)</label>
+                    <input type="text" name="location" required class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[9px] uppercase tracking-widest text-gray-500 mb-2">Executive Summary / Use of Funds</label>
+                    <textarea name="summary" rows="3" class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-[#A7F3D0] transition resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="md:col-span-2 w-full bg-[#A7F3D0] text-[#064E3B] py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs mt-10 hover:bg-white transition-all duration-500 shadow-xl shadow-emerald-500/10">
+                    Submit Application for Audit
+                </button>
+            </form>
+            <div id="responseMessage" class="hidden mt-8 text-center text-sm text-[#A7F3D0] font-light italic"></div>
+        </div>
+    </section>
+</body>
+</html>
