@@ -4,6 +4,6 @@
   },
   "platform": {
     "apiLanguage": "node",
-    "nodeVersion": "22"
+    "nodeVersion": "18"
   }
 }
