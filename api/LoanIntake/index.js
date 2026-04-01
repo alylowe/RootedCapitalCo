@@ -1,23 +1,26 @@
 const { runLoanRiskAudit } = require('../../packages/logic/index.js');
 
 module.exports = async function (context, req) {
-    const { clientName, amount, loanType, address } = req.body;
-    
-    // Architect Audit: Check for HNW Exposure
+    // Security Check: Ensure the requester has the key
+    const headerKey = req.headers['x-functions-key'];
+    const masterKey = process.env.AZURE_FUNCTION_KEY;
+
+    if (headerKey !== masterKey) {
+        context.res = { status: 401, body: "Unauthorized: Invalid Infrastructure Key" };
+        return;
+    }
+
+    const { clientName, amount, address } = req.body;
     const risk = runLoanRiskAudit(parseFloat(amount));
-    
-    const responseMessage = {
-        status: "Accepted",
-        client: clientName,
-        auditResult: risk.flag ? risk.message : "Standard Risk Profile",
-        timestamp: new Date().toISOString()
-    };
 
     context.res = {
         status: 200,
-        body: responseMessage
+        body: {
+            message: "Lead Secured",
+            founderReview: risk.flag,
+            auditTrail: risk.message
+        }
     };
     
-    // Architect Note: This is where we trigger SendGrid to Mauny's email
-    console.log(`[INTAKE] New ${loanType} application for $${amount} at ${address}`);
+    console.log(`[FREE-TIER-LOG] Lead captured for ${clientName} at ${address}`);
 };

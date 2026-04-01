@@ -1,0 +1,11 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "routes": [
+    {
+      "route": "/lending",
+      "rewrite": "/apps/lending-portal/index.html"
+    }
+  ]
+}

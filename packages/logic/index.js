@@ -2,39 +2,27 @@ const LABOR_RATES = { FOREMAN: 50, LABORER: 25 };
 const MAX_STANDARD_HOURS = 60;
 
 /**
- * Audit: Labor & Payroll
+ * Institutional Lending Guardrails (White-Labeled)
  */
-function calculateLaborTotal(f, l) {
-    return (f * LABOR_RATES.FOREMAN) + (l * LABOR_RATES.LABORER);
-}
+const PRODUCTS = {
+    FIX_FLIP: { maxLTC: 0.90, maxARLTV: 0.70, minLoan: 50000, maxLoan: 3000000 },
+    GROUND_UP: { maxLTC: 0.85, maxARV: 0.70, minLoan: 50000, maxLoan: 3000000 },
+    STABILIZED_BRIDGE: { maxLTC: 0.85, maxLTV: 0.70, minFICO: 660 },
+    RENTAL_SINGLE: { maxLTV: 0.80, minFICO: 660, minLoan: 75000 },
+    RENTAL_PORTFOLIO: { maxLTV: 0.80, minFICO: 680, minVal: 72000 }
+};
 
-function runAuditCheck(hours) {
-    return hours > MAX_STANDARD_HOURS 
-        ? { flag: true, message: "FOUNDER REVIEW REQUIRED: Labor hours exceed safety threshold." } 
-        : { flag: false };
-}
+function calculateLaborTotal(f, l) { return (f * LABOR_RATES.FOREMAN) + (l * LABOR_RATES.LABORER); }
 
 /**
- * Analytics: Distressed Property Acquisitions
+ * Partner Risk Audit
  */
-function calculateCapRate(noi, price) {
-    if (price <= 0) return 0;
-    return ((noi / price) * 100).toFixed(2);
+function validateLoanRequest(type, amount, fico) {
+    const p = PRODUCTS[type];
+    if (!p) return { valid: false, message: "Invalid Product Type" };
+    if (fico < p.minFICO) return { valid: false, message: "FICO below institutional floor." };
+    if (amount < p.minLoan) return { valid: false, message: "Amount below minimum threshold." };
+    return { valid: true };
 }
 
-module.exports = { LABOR_RATES, calculateLaborTotal, runAuditCheck, calculateCapRate };
-
-/**
- * Georgia Realtor Commission Logic
- * Calculates split based on standard 6% total (3% per side)
- */
-function calculateCommission(salePrice, splitPercentage = 0.03) {
-    const gross = salePrice * splitPercentage;
-    const brokerageFee = gross * 0.20; // Assuming a 80/20 split with your broker
-    return {
-        gross: gross.toFixed(2),
-        net: (gross - brokerageFee).toFixed(2)
-    };
-}
-
-module.exports = { ...module.exports, calculateCommission };
+module.exports = { ...module.exports, PRODUCTS, validateLoanRequest };
