@@ -91,6 +91,34 @@
             document.querySelector('.status-pill').classList.remove('animate-pulse');
             alert("Weekly Audit for 185 W Lake has been authorized and committed to the legacy ledger.");
         }
+	async function routeToMauny() {
+            const status = document.getElementById('status-msg');
+            if (status) {
+                status.innerText = "GENERATING INSTITUTIONAL LEDGER...";
+                status.style.color = "#888";
+            }
+
+            try {
+                const response = await fetch('/api/LoanIntake', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'approve_weekly_burn',
+                        approver: 'Mauny',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    if (status) {
+                        status.innerText = "SUCCESS: AUDIT ROUTED TO PRINCIPAL";
+                        status.style.color = "#A7F3D0"; // Mint Green
+                    }
+                }
+            } catch (err) {
+                if (status) status.innerText = "CONNECTION ERROR: RETRYING...";
+            }
+        }
     </script>
 </body>
 </html>

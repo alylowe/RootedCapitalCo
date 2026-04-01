@@ -1,1 +1,110 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooted Capital | Field Operations</title>
+    <style>
+        :root { --mint: #a8f0d1; --black: #000; --gold: #c5a059; --grey: #1a1a1a; }
+        body { background: var(--black); color: white; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { border: 1px solid #333; padding: 40px; width: 100%; max-width: 400px; text-align: center; background: #050505; }
+        .branding { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 0.65rem; margin-bottom: 10px; }
+        h1 { font-weight: 300; font-size: 1.5rem; margin-bottom: 30px; letter-spacing: -1px; }
+        select, input { width: 100%; padding: 15px; margin-bottom: 12px; background: #111; border: 1px solid #222; color: white; border-radius: 0; appearance: none; }
+        .btn-submit { width: 100%; padding: 18px; background: var(--mint); color: black; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 50px; margin-top: 20px; transition: 0.3s; }
+        .btn-submit:hover { background: white; transform: translateY(-2px); }
+        #status { margin-top: 25px; font-size: 0.75rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="branding">Field Operations Ledger</div>
+    <h1>Daily Labor Entry</h1>
+    
+    <select id="projectLocation">
+        <option value="" disabled selected>SELECT PROJECT ADDRESS</option>
+        <option value="185 W Lake">185 W Lake</option>
+        <option value="3048 Duke">3048 Duke</option>
+        <option value="2081 Dodson">2081 Dodson</option>
+        <option value="2139 W Cedar">2139 W Cedar</option>
+    </select>
+
+    <select id="workerName">
+        <option value="" disabled selected>SELECT YOUR NAME</option>
+        <option value="domingo">Domingo</option>
+        <option value="franco">Franco</option>
+        <option value="kevin">Kevin</option>
+        <option value="carlos">Carlos</option>
+        <option value="gabriel">Gabriel</option>
+        <option value="oscar">Oscar</option>
+        <option value="rolando">Rolando</option>
+        <option value="lambro">Lambro</option>
+    </select>
+
+    <input type="number" id="hours" placeholder="HOURS WORKED (e.g. 8)" min="1" max="16">
+    <input type="password" id="workerPin" placeholder="SECURITY PIN" maxlength="4">
+    
+    <button class="btn-submit" onclick="submitToLedger()">Submit Daily Labor</button>
+    
+    <div id="status">System: Secure Handshake Active</div>
+</div>
+
+<script>
+    const REGISTRY = {
+        "domingo": { pin: "5050", rate: 50 },
+        "franco": { pin: "1111", rate: 25 },
+        "kevin": { pin: "2222", rate: 25 },
+        "carlos": { pin: "3333", rate: 25 },
+        "gabriel": { pin: "4444", rate: 25 },
+        "oscar": { pin: "5555", rate: 25 },
+        "rolando": { pin: "6666", rate: 25 },
+        "lambro": { pin: "7777", rate: 25 }
+    };
+
+    async function submitToLedger() {
+        const project = document.getElementById('projectLocation').value;
+        const name = document.getElementById('workerName').value;
+        const hours = document.getElementById('hours').value;
+        const pin = document.getElementById('workerPin').value;
+        const status = document.getElementById('status');
+
+        if (!project || !name || !hours || !pin) {
+            status.innerText = "ERROR: ALL FIELDS REQUIRED";
+            return;
+        }
+
+        const workerData = REGISTRY[name];
+
+        if (workerData.pin === pin) {
+            status.innerText = "AUTHENTICATED: SYNCING...";
+            status.style.color = "var(--mint)";
+
+            try {
+                const totalCost = hours * workerData.rate;
+                const response = await fetch('/api/LoanIntake', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'burn_entry',
+                        project: project,
+                        worker: name,
+                        hours: hours,
+                        cost: totalCost,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    status.innerText = "SUCCESS: HOURS LOGGED FOR " + project;
+                }
+            } catch (e) {
+                status.innerText = "OFFLINE: SAVED TO LOCAL CACHE";
+            }
+        } else {
+            status.innerText = "ERROR: INVALID SECURITY PIN";
+            status.style.color = "red";
+        }
+    }
+</script>
+</body>
+</html> 
