@@ -2,37 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rooted Capital | Institutional Services</title>
+    <title>Services | Rooted Capital Co.</title>
     <style>
-        :root { --gold: #c5a059; --dark: #050505; }
-        body { background: var(--dark); color: #fff; font-family: 'Helvetica Neue', sans-serif; margin: 0; padding: 60px; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .service-card { border-left: 1px solid var(--gold); padding: 30px; background: #0a0a0a; transition: 0.4s; }
-        .service-card:hover { background: #111; }
-        h1 { letter-spacing: 5px; text-transform: uppercase; font-weight: 200; border-bottom: 1px solid #222; padding-bottom: 20px; }
-        h3 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
-        p { color: #888; font-size: 0.9rem; line-height: 1.6; }
+        :root { --gold: #c5a059; --dark: #0a0a0a; }
+        body { background: var(--dark); color: #fff; font-family: sans-serif; margin:0; }
+        nav { display: flex; justify-content: space-between; padding: 20px 50px; background: #fff; }
+        nav a { margin-left: 20px; text-decoration: none; color: #333; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 50px; }
+        .card { border: 1px solid #333; padding: 25px; background: #111; }
+        h3 { color: var(--gold); }
     </style>
 </head>
 <body>
-    <h1>Our Real Estate Services</h1>
-    <div class="services-grid">
-        <div class="service-card">
-            <h3>Turnkey Properties</h3>
-            <p>Fully renovated and leased to qualified tenants. High-yield, passive ownership for the modern investor.</p>
-        </div>
-        <div class="service-card">
-            <h3>Portfolio Investing</h3>
-            <p>Exclusive passive opportunities for accredited investors in diversified real estate portfolios.</p>
-        </div>
-        <div class="service-card">
-            <h3>Lending</h3>
-            <p>Transactional and short-term bridge loans. Proprietary capital deployed with Big 4 consulting precision.</p>
-        </div>
-        <div class="service-card">
-            <h3>Property Management</h3>
-            <p>Comprehensive oversight including broker-led leasing, maintenance, and resident relations.</p>
-        </div>
+    <nav>
+        <div style="color:var(--gold); font-weight:bold;">ROOTED CAPITAL</div>
+        <div><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html" style="color:var(--gold)">Services</a><a href="opportunities.html">Opportunities</a><a href="contact.html">Contact Us</a></div>
+    </nav>
+    <h1 style="text-align:center; padding-top:40px;">What We Offer</h1>
+    <div class="grid">
+        <div class="card"><h3>Turnkey Properties</h3><p>Leased to qualified tenants and fully renovated.</p></div>
+        <div class="card"><h3>Lending</h3><p>Transactional and short-term loans for investors (90% LTC Fix & Flip).</p></div>
+        <div class="card"><h3>Property Management</h3><p>Full team consisting of a broker, agents, and maintenance.</p></div>
     </div>
 </body>
 </html>
