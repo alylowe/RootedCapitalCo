@@ -1,22 +1,94 @@
-<body class="bg-[#050505] p-6 pt-20 flex justify-center font-sans">
-    <div class="max-w-xl w-full bg-white/5 p-12 rounded-[40px] border border-white/10">
-        <h1 class="text-3xl font-light mb-10 tracking-tighter">Shift <span class="font-semibold italic">Log.</span></h1>
-        <form id="timeForm" class="space-y-8">
-            <select name="foreman" class="w-full bg-white/5 p-4 rounded-2xl border border-white/10 text-white uppercase text-[10px] tracking-widest">
-                <option value="Domingo">Domingo (Foreman)</option>
-                <option value="Franco">Franco</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Carlos">Carlos</option>
-                <option value="Gabriel">Gabriel</option>
-            </select>
-            <select name="site" class="w-full bg-white/5 p-4 rounded-2xl border border-white/10 text-white uppercase text-[10px] tracking-widest">
-                <option value="185-W-Lake">185 W Lake</option>
-                <option value="3048-Duke">3048 Duke</option>
-                <option value="2081-Dodson">2081 Dodson</option>
-                <option value="2139-W-Cedar">2139 W Cedar</option>
-            </select>
-            <input type="number" name="hours" placeholder="Hours Logged" step="0.5" class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-[#A7F3D0] text-3xl">
-            <button type="submit" class="w-full bg-[#C5A059] text-black py-5 rounded-full font-bold uppercase tracking-widest text-[10px]">Commit to Ledger</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Field Audit | Rooted Capital Co.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; }
+        .glass-input { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; color: white; width: 100%; outline: none; }
+        .glass-input:focus { border-color: #A7F3D0; }
+        .table-head { color: #C5A059; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; }
+    </style>
+</head>
+<body class="p-6 md:p-16">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-end mb-16 border-b border-white/10 pb-8">
+            <div>
+                <span class="text-[#C5A059] font-bold tracking-[0.4em] text-[10px] uppercase">Operational Oversight</span>
+                <h1 class="text-4xl font-light mt-2 tracking-tighter">Weekly <span class="italic font-semibold">Time Ledger.</span></h1>
+            </div>
+            <div class="text-right">
+                <select id="projectSite" class="bg-transparent border-b border-[#A7F3D0] text-[#A7F3D0] text-sm py-2 outline-none cursor-pointer">
+                    <option value="185-W-Lake">185 W Lake</option>
+                    <option value="3048-Duke">3048 Duke</option>
+                    <option value="2081-Dodson">2081 Dodson</option>
+                    <option value="2139-W-Cedar">2139 W Cedar</option>
+                </select>
+            </div>
+        </div>
+
+        <form id="weeklyForm" class="space-y-6">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="table-head">
+                            <th class="pb-6 pr-4">Personnel</th>
+                            <th class="pb-6">Mon</th>
+                            <th class="pb-6">Tue</th>
+                            <th class="pb-6">Wed</th>
+                            <th class="pb-6">Thu</th>
+                            <th class="pb-6">Fri</th>
+                            <th class="pb-6">Sat</th>
+                            <th class="pb-6 text-right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="worker-row">
+                            <td class="py-4 pr-4">
+                                <select name="worker_name" class="glass-input text-xs uppercase tracking-widest">
+                                    <option>Domingo</option><option>Franco</option><option>Kevin</option><option>Carlos</option><option>Gabriel</option><option>Rolando</option><option>Oscar</option>
+                                </select>
+                            </td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="mon"></td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="tue"></td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="wed"></td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="thu"></td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="fri"></td>
+                            <td class="py-4"><input type="number" step="0.5" class="glass-input day-input" name="sat"></td>
+                            <td class="py-4 text-right font-semibold text-[#A7F3D0] row-total">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center pt-10 border-t border-white/10 mt-10">
+                <div>
+                    <p class="text-[9px] uppercase tracking-widest text-gray-500">Institutional Burn Rate</p>
+                    <p id="weekTotalHours" class="text-4xl font-light text-white">0 <span class="text-sm text-gray-600">Hours</span></p>
+                </div>
+                <button type="submit" class="bg-[#A7F3D0] text-[#064E3B] px-16 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-white transition-all shadow-xl shadow-emerald-500/10">
+                    Commit Weekly Ledger
+                </button>
+            </div>
         </form>
     </div>
+
+    <script>
+        document.querySelectorAll('.day-input').forEach(input => {
+            input.addEventListener('input', () => {
+                let row = input.closest('.worker-row');
+                let dayInputs = row.querySelectorAll('.day-input');
+                let total = 0;
+                dayInputs.forEach(i => total += parseFloat(i.value || 0));
+                row.querySelector('.row-total').innerText = total;
+
+                let grandTotal = 0;
+                document.querySelectorAll('.day-input').forEach(i => grandTotal += parseFloat(i.value || 0));
+                document.getElementById('weekTotalHours').innerText = grandTotal + " Hours";
+            });
+        });
+    </script>
 </body>
+</html>
