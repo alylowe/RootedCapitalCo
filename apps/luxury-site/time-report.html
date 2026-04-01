@@ -1,3 +1,95 @@
+<script>
+    // --- SECURE WORKER REGISTRY ---
+    const crew = {
+        "domingo": { key: "5050", rate: 50 },
+        "franco":  { key: "2525", rate: 25 },
+        "kevin":   { key: "2525", rate: 25 },
+        "carlos":  { key: "2525", rate: 25 },
+        "gabriel": { key: "2525", rate: 25 },
+        "rolando": { key: "2525", rate: 25 },
+        "oscar":   { key: "2525", rate: 25 },
+        "lambro":  { key: "2525", rate: 25 }
+    };
+
+    let sessionUser = sessionStorage.getItem('active_worker');
+
+    if (!sessionUser) {
+        const id = prompt("WORKER ID (First Name):").toLowerCase();
+        const pin = prompt("ENTER WORKER KEY:");
+
+        if (crew[id] && pin === crew[id].key) {
+            sessionStorage.setItem('active_worker', id);
+            sessionStorage.setItem('active_rate', crew[id].rate);
+            sessionUser = id;
+        } else {
+            alert("ENTRY DENIED");
+            window.location.href = "index.html";
+        }
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Daily Labor | Rooted Capital Co.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #050505; color: white; font-family: sans-serif; }
+        .stepper { background: #111; width: 100px; height: 100px; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 1px solid #222; }
+        .stepper:active { background: #A7F3D0; color: black; transform: scale(0.9); }
+        .label-gold { color: #C5A059; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5em; }
+    </style>
+</head>
+<body class="p-8 flex flex-col items-center justify-center min-h-screen">
+    <div class="w-full max-w-sm text-center">
+        
+        <header class="mb-12">
+            <span class="label-gold">Authenticated Personnel</span>
+            <h1 id="userName" class="text-5xl font-light italic uppercase mt-2 tracking-tighter">---</h1>
+        </header>
+
+        <div class="mb-12">
+            <span class="label-gold block mb-4">Project Site</span>
+            <select id="site" class="bg-transparent text-[#A7F3D0] text-2xl font-bold outline-none border-b border-white/10 pb-2 w-full text-center">
+                <option value="185-W-Lake">185 W Lake</option>
+                <option value="3048-Duke">3048 Duke</option>
+                <option value="2081-Dodson">2081 Dodson</option>
+                <option value="2139-W-Cedar">2139 W Cedar</option>
+            </select>
+        </div>
+
+        <div class="py-10">
+            <span class="label-gold">Daily Hours Log</span>
+            <div id="hrs" class="text-[120px] font-bold leading-none my-6 text-white tracking-tighter">0</div>
+            
+            <div class="flex justify-center gap-10">
+                <button class="stepper" onclick="adj(-1)">-</button>
+                <button class="stepper" onclick="adj(1)">+</button>
+            </div>
+        </div>
+
+        <button onclick="submitDaily()" class="w-full mt-16 bg-[#A7F3D0] text-black py-7 rounded-full font-bold uppercase tracking-widest text-xs shadow-2xl shadow-emerald-500/20 active:scale-95 transition">
+            Submit Daily Labor
+        </button>
+
+        <button onclick="sessionStorage.clear(); location.reload();" class="mt-10 text-gray-700 text-[10px] uppercase tracking-widest">Switch Worker</button>
+    </div>
+
+    <script>
+        document.getElementById('userName').innerText = sessionUser;
+        let count = 0;
+        function adj(v) { count = Math.max(0, count + v); document.getElementById('hrs').innerText = count; }
+
+        function submitDaily() {
+            const project = document.getElementById('site').value;
+            alert(`SUCCESS: ${count} hours logged for ${sessionUser} at ${project}.`);
+            // Reset for next day
+            location.reload();
+        }
+    </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
