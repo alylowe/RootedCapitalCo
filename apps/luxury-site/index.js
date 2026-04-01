@@ -39,3 +39,52 @@ if (loanForm) {
         }, 2000);
     });
 }
+// --- WEEKLY INSTITUTIONAL LEDGER LOGIC ---
+// This handles the real-time burn rate calculations for the crew portal
+document.addEventListener('input', (e) => {
+    if (e.target.classList.contains('day-input')) {
+        const row = e.target.closest('.worker-row');
+        const dayInputs = row.querySelectorAll('.day-input');
+        let rowTotal = 0;
+
+        // Calculate Individual Worker Total
+        dayInputs.forEach(input => {
+            rowTotal += parseFloat(input.value || 0);
+        });
+        row.querySelector('.row-total').innerText = rowTotal;
+
+        // Calculate Global Project Burn Rate
+        let grandTotal = 0;
+        document.querySelectorAll('.day-input').forEach(input => {
+            grandTotal += parseFloat(input.value || 0);
+        });
+
+        const totalDisplay = document.getElementById('weekTotalHours');
+        if (totalDisplay) {
+            totalDisplay.innerText = grandTotal + " Hours";
+        }
+    }
+});
+
+// Submit Logic for the Weekly Sync
+const weeklyForm = document.getElementById('weeklyForm');
+if (weeklyForm) {
+    weeklyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const site = document.getElementById('projectSite').value;
+
+        btn.innerHTML = "SYNCING WITH LEDGER...";
+        btn.style.opacity = "0.7";
+
+        // Log to the Architect Console (keeping your Sotheby's style)
+        console.log(`[OPS AUDIT] Committing Weekly Data for ${site}`);
+
+        setTimeout(() => {
+            btn.innerHTML = "WEEKLY SYNC COMPLETE";
+            btn.style.background = "#C5A059"; // Switch to Gold on success
+            btn.style.color = "black";
+            btn.style.opacity = "1";
+        }, 1500);
+    });
+}
