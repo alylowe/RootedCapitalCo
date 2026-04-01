@@ -1,63 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Rooted Capital Co.</title>
-    <style>
-        :root { --gold: #c5a059; --dark: #0a0a0a; --gray: #1a1a1a; }
-        body { background: var(--dark); color: white; font-family: 'Times New Roman', serif; margin: 0; line-height: 1.6; }
-        nav { padding: 20px; border-bottom: 1px solid #333; text-align: center; }
-        nav a { color: var(--gold); margin: 0 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
-        h1, h2 { text-transform: uppercase; letter-spacing: 6px; color: var(--gold); text-align: center; }
-        .history { font-size: 20px; text-align: center; font-style: italic; color: #bbb; margin-bottom: 60px; }
-        .leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px; }
-        .bio h3 { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px; }
-        .value-props { background: var(--gray); padding: 40px; border-radius: 4px; margin-top: 80px; border: 1px solid #333; }
-        .value-props h2 { margin-top: 0; }
-        .highlight { color: var(--gold); font-weight: bold; }
-    </style>
+    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet">
+    <style>body { background: #050505; color: white; font-family: 'Inter', sans-serif; }</style>
 </head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="opportunities.html">Opportunities</a>
+<body class="antialiased">
+    <nav class="flex justify-between p-10 absolute w-full z-50">
+        <div class="font-bold uppercase text-xl">Rooted Capital <span class="font-light text-gray-500">Co.</span></div>
+        <div class="flex gap-10 text-[10px] font-bold tracking-widest uppercase">
+            <a href="index.html">Home</a><a href="services.html">Services</a><a href="opportunities.html" class="text-[#A7F3D0]">Lending</a>
+        </div>
     </nav>
-
-    <div class="container">
-        <h1>Our Legacy</h1>
-        <p class="history">
-            Rooted in resilience, defined by results. Since acquiring our first property in 2003, Rooted Capital Co. has navigated through every major market cycle, acquiring several hundred assets across the residential spectrum.
-        </p>
-
-        <h2>Executive Leadership</h2>
-        <div class="leadership-grid">
-            <div class="bio">
-                <h3>Mauny Tabar <br><small>Principal & Co-Founder</small></h3>
-                <p>
-                    Leveraging a foundation in <span class="highlight">Big 4 Management Consulting</span>, Mauny brings an analytical rigor to real estate rarely seen in the private sector. He specializes in the strategic acquisition of distressed assets, identifying high-yield opportunities that provide long-term stability for Rooted Capital and its institutional partners.
-                </p>
+    <section class="py-40 px-10 max-w-6xl mx-auto">
+        <h2 class="text-[#C5A059] uppercase tracking-[0.5em] text-[9px] mb-20 text-center font-bold">Institutional Leadership</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div class="group">
+                <div class="border-l border-[#C5A059] pl-6 mb-8">
+                    <img src="/images/mauny-headshot.jpg" class="w-full grayscale group-hover:grayscale-0 transition duration-700">
+                </div>
+                <h3 class="text-2xl font-light uppercase tracking-widest">Mauny Tabar</h3>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed">Ex-Big 4 Management Consultant specializing in distressed asset acquisition.</p>
             </div>
-            <div class="bio">
-                <h3>Neema Tabar <br><small>Principal & Co-Founder</small></h3>
-                <p>
-                    Also a veteran of <span class="highlight">Big 4 Management Consulting</span>, Neema oversees the operational architecture of the firm. From high-level business logistics to the precision of our property management division, Neema ensures that every asset in the Rooted Capital portfolio operates with maximum efficiency and transparency.
-                </p>
+            <div class="group">
+                <div class="border-l border-[#C5A059] pl-6 mb-8">
+                    <img src="/images/neema-headshot.jpg" class="w-full grayscale group-hover:grayscale-0 transition duration-700">
+                </div>
+                <h3 class="text-2xl font-light uppercase tracking-widest">Neema Tabar</h3>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed">Operations Lead focusing on institutional-grade project oversight.</p>
             </div>
         </div>
-
-        <div class="value-props">
-            <h2>The Rooted Standard</h2>
-            <p>
-                Why choose Rooted Capital? Because we combine <span class="highlight">cutting-edge technology</span> with deep-market relationships. Our network of elite contractors, attorneys, and financial experts has been cultivated over two decades. 
-            </p>
-            <p>
-                Above all, we operate on three non-negotiable pillars: <span class="highlight">Integrity, Accountability, and Compassion.</span>
-            </p>
-        </div>
-    </div>
+    </section>
 </body>
 </html>
