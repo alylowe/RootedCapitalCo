@@ -285,6 +285,73 @@ JavaScript
             if (status) status.innerText = "OFFLINE: SAVING LOCALLY...";
         }
     }
+    function downloadCSV() {
+        const csvRows = [
+            ["Property", "Personnel", "Hours", "Rate", "Total"],
+            ["185 W Lake", "Domingo", "40", "50", "2000"],
+            ["185 W Lake", "Franco", "38.5", "25", "962.50"],
+            ["185 W Lake", "Kevin", "36", "25", "900"]
+        ];
+
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + csvRows.map(e => e.join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Rooted_Capital_Payroll_185WLake.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // 2. THE "FILE" ENGINE (Writes to Azure Tables)
+    async function routeToMauny() {
+        const status = document.getElementById('status-msg');
+        if (status) status.innerText = "COMMITTING TO INSTITUTIONAL LEDGER...";
+
+        // MANDATORY: Azure Tables MUST have PartitionKey and RowKey
+        const auditPayload = {
+            PartitionKey: "RootedCapital_Payroll",
+            RowKey: "185WLake_" + Date.now().toString(),
+            TotalImpact: 3875.00,
+            Approver: "Mauny",
+            Project: "185 W Lake",
+            Timestamp: new Date().toISOString()
+        };
+
+        try {
+            const response = await fetch('/api/LoanIntake', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(auditPayload)
+            });
+
+            if (response.ok) {
+                // SUCCESS STATE
+                if (status) {
+                    status.innerText = "SUCCESS: LEDGER LOCKED & CSV GENERATED";
+                    status.style.color = "#A7F3D0";
+                }
+
+                downloadCSV(); // Trigger the CSV Download
+
+                // Update the UI Pills
+                document.querySelector('.status-pill').innerHTML = "Approved & Synced";
+                document.querySelector('.status-pill').style.color = "#C5A059";
+                document.querySelector('.status-pill').style.borderColor = "#C5A059";
+
+                console.log("[LEDGER] Entry filed successfully.");
+            } else {
+                const errBody = await response.text();
+                console.error("Azure Rejected Request:", errBody);
+                if (status) status.innerText = "API ERROR: CHECK CONSOLE";
+            }
+        } catch (err) {
+            console.error("Connection Failed:", err);
+            if (status) status.innerText = "CONNECTION ERROR: RETRYING...";
+        }
+    }
     </script>
 </body>
 </html>
